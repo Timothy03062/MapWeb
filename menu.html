@@ -11,7 +11,7 @@
     <style>
         body { margin:0; padding:0; float:center; }
         #map { width:50%; height: 400px; float: left }
-        #map { width:50%; height: 400px; float: margin-left: 50% }
+        #map2 { width:50%; height: 400px; float: margin-left: 50% }
     </style>
 </head>
 <body>
@@ -70,7 +70,7 @@ map.on('load', function() {
     });
 });
 
-var maptwo = new mapboxgl.Map({
+var map2 = new mapboxgl.Map({
     container: 'map2', // container id
     style: 'mapbox://styles/mapbox/light-v9', // stylesheet location
     center: [151.004105, -33.813002], // starting position [lng, lat]
@@ -78,28 +78,40 @@ var maptwo = new mapboxgl.Map({
     bearing: -17.6,
     zoom: 9 // starting zoom
 });
-maptwo.on('load', function() {
-    map.addLayer({
+map2.on('load', function() {
+    map2.addLayer({
         "id": "data",
         "type": "fill-extrusion",
         "source": {
         	'type': 'geojson',
-        	'data': data2
+        	'data': data
         },
            'paint': {
                 'fill-extrusion-color' : {
                    'property': 'hdd_2016',
                     "stops":[
-                    	[0, 'white'],
-                        [50, 'green']
+                    		[0, '#B2DEE6'],
+                    	[112, '#9DC6CE'],
+                        [250, '#88B5BF'],
+                        [338,'#62929B'],
+                        [436, '#3F7484'],
+                        [635, '#2B687A'],
+                        [1160, '#155A6F'],
+                        [2428, '#044D64'],
+                        [10000, '#003A4B']
                     ]
                     
                 },
                 'fill-extrusion-height' : {
                     'property': 'diff_hdd',
                     "stops":[
-                        [0.2, 0],
-                        [1, 50000]
+                        [0, 0], 
+                    	[10, 1000],
+                        [20, 2000],
+                        [30, 3000],
+                        [40, 4000],
+                        [50, 5000],
+                        [60, 6000]
                     ]
                 },
                  'fill-extrusion-opacity': 1
