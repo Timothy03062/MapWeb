@@ -6,15 +6,19 @@
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.js'></script>
     <script src='./data.js'></script>
+    <script src='./data2.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.css' rel='stylesheet' />
     <style>
-        body { margin:0; padding:0; }
-        #map { position: absolute; top:0px; left:0px; bottom:0px; width:100%; }
+        body { margin:0; padding:0; float:center; }
+        #map { width:50%; height: 400px; float: left }
+        #map { width:50%; height: 400px; float: margin-left: 50% }
     </style>
 </head>
 <body>
 
 <div id='map'></div>
+<div id='map2'></div>
+
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoibWFkZWxlaW5lam9oYW5zb24iLCJhIjoiY2lzczduYzJ4MDZrODJucGh0Mm1xbmVxNCJ9.i7q4iT8FFgh_y5v4we5UhQ';
 var map = new mapboxgl.Map({
@@ -59,6 +63,43 @@ map.on('load', function() {
                         [40, 4000],
                         [50, 5000],
                         [60, 6000]
+                    ]
+                },
+                 'fill-extrusion-opacity': 1
+            }
+    });
+});
+
+var maptwo = new mapboxgl.Map({
+    container: 'map2', // container id
+    style: 'mapbox://styles/mapbox/light-v9', // stylesheet location
+    center: [151.004105, -33.813002], // starting position [lng, lat]
+    pitch: 45,
+    bearing: -17.6,
+    zoom: 9 // starting zoom
+});
+maptwo.on('load', function() {
+    map.addLayer({
+        "id": "data",
+        "type": "fill-extrusion",
+        "source": {
+        	'type': 'geojson',
+        	'data': data2
+        },
+           'paint': {
+                'fill-extrusion-color' : {
+                   'property': 'hdd_2016',
+                    "stops":[
+                    	[0, 'white'],
+                        [50, 'green']
+                    ]
+                    
+                },
+                'fill-extrusion-height' : {
+                    'property': 'diff_hdd',
+                    "stops":[
+                        [0.2, 0],
+                        [1, 50000]
                     ]
                 },
                  'fill-extrusion-opacity': 1
