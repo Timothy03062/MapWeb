@@ -15,109 +15,95 @@
     </style>
 </head>
 <body>
+<div id='map' style='width: 50%; height: 400px; float: left'></div>
+				<script>
+					mapboxgl.accessToken = 'pk.eyJ1IjoiYWxhbnc0MTAiLCJhIjoiY2o2dm5haXU2MTN6ZzJxbW5zNzZiYno1dyJ9.SKQLCI0TiB8PGaPsij9PgQ';
+					var map = new mapboxgl.Map({
+						container: 'map',
+						style: 'mapbox://styles/mapbox/dark-v9',
+						center: [150.9, -33.8688],
+						zoom: 8
+				});
+				map.on('load', function() {
 
-<div id='map'></div>
-<div id='map2'></div>
+					map.addLayer({
+						'id': 'data',
+						'type': 'fill-extrusion',
+						'source': {
+							// Geojson Data source used in vector tiles, documented at
+							// https://gist.github.com/ryanbaumann/a7d970386ce59d11c16278b90dde094d
+							'type': 'geojson',
+							'data': data
+						},
+						'paint': {
 
-<script>
-mapboxgl.accessToken = 'pk.eyJ1IjoibWFkZWxlaW5lam9oYW5zb24iLCJhIjoiY2lzczduYzJ4MDZrODJucGh0Mm1xbmVxNCJ9.i7q4iT8FFgh_y5v4we5UhQ';
-var map = new mapboxgl.Map({
-    container: 'map', // container id
-    style: 'mapbox://styles/mapbox/light-v9', // stylesheet location
-    center: [151.004105, -33.813002], // starting position [lng, lat]
-    pitch: 45,
-    bearing: -17.6,
-    zoom: 9 // starting zoom
-});
-map.on('load', function() {
-    map.addLayer({
-        "id": "data",
-        "type": "fill-extrusion",
-        "source": {
-        	'type': 'geojson',
-        	'data': data
-        },
-           'paint': {
-                'fill-extrusion-color' : {
-                   'property': 'MV2_2016',
-                    "stops":[
-                    	[0, '#B2DEE6'],
-                    	[5, '#9DC6CE'],
-                        [10, '#88B5BF'],
-                        [15,'#62929B'],
-                        [20, '#3F7484'],
-                        [25, '#2B687A'],
-                        [30, '#155A6F'],
-                        [35, '#044D64'],
-                        [40, '#003A4B']
-                    ]
-                    
-                },
-                'fill-extrusion-height' : {
-                    'property': 'diff_1611',
-                    "stops":[
-                        [0, 0], 
-                    	[10, 1000],
-                        [20, 2000],
-                        [30, 3000],
-                        [40, 4000],
-                        [50, 5000],
-                        [60, 6000]
-                    ]
-                },
-                 'fill-extrusion-opacity': 1
-            }
-    });
-});
+							'fill-extrusion-color': {
+								// Get the fill-extrusion-color from the source 'color' property.
+								'property': 'MV2_2016',
+								'stops': [
+								  [0, 'black'],
+								  [0.2, 'cyan'],
+								  [0.98, 'blue']
+								  ]
+							},
+							'fill-extrusion-height': {
+								// Get fill-extrusion-height from the source 'height' property.
+								'property': 'diff_1611',
+								'stops': [
+									[0, 0.41],
+									[1, 40000]
+									]
+							},
+							// Make extrusions slightly opaque for see through indoor walls.
+							'fill-extrusion-opacity': 0.7
+						}
+					});
+				});
+				</script>
+			<div id='map2' style='width: 50%; height: 400px; margin-left: 50%;'></div>
+				<script>
+					mapboxgl.accessToken = 'pk.eyJ1IjoiYWxhbnc0MTAiLCJhIjoiY2o2dm5haXU2MTN6ZzJxbW5zNzZiYno1dyJ9.SKQLCI0TiB8PGaPsij9PgQ';
+					var map2 = new mapboxgl.Map({
+						container: 'map2',
+						style: 'mapbox://styles/mapbox/dark-v9',
+						center: [150.9, -33.8688],
+						zoom: 8
+				});
+				map2.on('load', function() {
 
-var map2 = new mapboxgl.Map({
-    container: 'map2', // container id
-    style: 'mapbox://styles/mapbox/light-v9', // stylesheet location
-    center: [151.004105, -33.813002], // starting position [lng, lat]
-    pitch: 45,
-    bearing: -17.6,
-    zoom: 9 // starting zoom
-});
-map2.on('load', function() {
-    map2.addLayer({
-        "id": "data",
-        "type": "fill-extrusion",
-        "source": {
-        	'type': 'geojson',
-        	'data': data
-        },
-           'paint': {
-                'fill-extrusion-color' : {
-                   'property': 'hdd_2016',
-                    "stops":[
-                    		[0, '#B2DEE6'],
-                    	[112, '#9DC6CE'],
-                        [250, '#88B5BF'],
-                        [338,'#62929B'],
-                        [436, '#3F7484'],
-                        [635, '#2B687A'],
-                        [1160, '#155A6F'],
-                        [2428, '#044D64'],
-                        [10000, '#003A4B']
-                    ]
-                    
-                },
-                'fill-extrusion-height' : {
-                    'property': 'diff_hdd',
-                    "stops":[
-                        [0, 0], 
-                    	[10, 1000],
-                        [20, 2000],
-                        [30, 3000],
-                        [40, 4000],
-                        [50, 5000],
-                        [60, 6000]
-                    ]
-                },
-                 'fill-extrusion-opacity': 1
-            }
-    });
-});
+					map2.addLayer({
+						'id': 'data2',
+						'type': 'fill-extrusion',
+						'source': {
+							// Geojson Data source used in vector tiles, documented at
+							// https://gist.github.com/ryanbaumann/a7d970386ce59d11c16278b90dde094d
+							'type': 'geojson',
+							'data': data
+						},
+						'paint': {
+
+							'fill-extrusion-color': {
+								// Get the fill-extrusion-color from the source 'color' property.
+								'property': 'hdd_2016',
+								'stops': [
+								  [0, 'black'],
+								  [0.2, 'cyan'],
+								  [1, 'blue']
+								  ]
+							},
+							'fill-extrusion-height': {
+								// Get fill-extrusion-height from the source 'height' property.
+								'property': 'diff_hdd',
+								'stops': [
+									[0, 1],
+									[1, 40000]
+									]
+							},
+							// Make extrusions slightly opaque for see through indoor walls.
+							'fill-extrusion-opacity': 0.7
+						}
+					});
+				});
 </script>
 
 </body>
