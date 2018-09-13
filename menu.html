@@ -20,7 +20,7 @@
 					mapboxgl.accessToken = 'pk.eyJ1IjoiYWxhbnc0MTAiLCJhIjoiY2o2dm5haXU2MTN6ZzJxbW5zNzZiYno1dyJ9.SKQLCI0TiB8PGaPsij9PgQ';
 					var map = new mapboxgl.Map({
 						container: 'map',
-						style: 'mapbox://styles/mapbox/dark-v9',
+						style: 'mapbox://styles/mapbox/light-v9',
 						center: [150.9, -33.8688],
 						zoom: 8
 				});
@@ -78,7 +78,7 @@
 							// Geojson Data source used in vector tiles, documented at
 							// https://gist.github.com/ryanbaumann/a7d970386ce59d11c16278b90dde094d
 							'type': 'geojson',
-							'data2': data
+							'data': data2
 						},
 						'paint': {
 
