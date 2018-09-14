@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset='utf-8' />
-    <title>MapTwo</title>
+    <title>2011 dngts</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.js'></script>
     <script src='./data.js'></script>
@@ -10,12 +10,11 @@
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.css' rel='stylesheet' />
     <style>
         body { margin:0; padding:0; float:center; }
-        #map { width: 50%; height: 400px; float: left}
-        #map2 { width: 50%; height: 400px; margin-left: 50%}
+        #map { width:50%; height: 400px; float: left }
+        #map2 { width:50%; height: 400px; float: margin-left: 50% }
     </style>
 </head>
 <body>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -117,7 +116,7 @@
 <br>
 
 <h5>Median Income per Household Weekly</h5>
-<p>Between 2011 and 2016, there has been strong growth within NSW overall. In line with the general growth trend as seen in Motor Vehicles, growth is more directed and prominent towards the east. Particular growth is found in and around large cities in NSW like Sydney, Armidale, Wagga Wagga, and so on. Growth however isn't limited to the east, a significant portion of western zones and regional areas have also increased its median income bracket in 2016 compared to 2011.This could be due to NSW economic growth has it has experienced an average of 7-8% growth per annum between 2012-2013 and Australia itself has experienced 1%-1.5% growth in average. An increased economy translates into increased employment rates and people receiving an income. Also rises in the minimal income is $17.79 per hour would also increase the household income weekly. There has been an increase an estimated average of $500 and more to zones which experienced a increase. </p>
+<p>Between 2011 and 2016, there has been strong growth within NSW overall. In line with the general growth trend as seen in Motor Vehicles, growth is more directed and prominent towards the east. Particular growth is found in and around large cities in NSW like Sydney, Armidale, Wagga Wagga, and so on. Growth however isn't limited to the east, a significant portion of western zones and regional areas have also increased its median income bracket in 2016 compared to 2011.This could be due to NSW economic growth has it has experienced an average of 7-8% growth per annum between 2012-2013 and Australia itself has experienced 1%-3% growth in GDP average. An increased economy translates into increased employment rates and people receiving an income. Also rises in the minimal income is $17.79 per hour would also increase the household income weekly. There has been an increase an estimated average of $500 and more to zones which experienced a increase. </p>
 
 <div class="row">
   <div class="column">
@@ -138,7 +137,7 @@
 
 <br>
 
-<p> Within Sydney, there also appears to be strong growth. The north and west seem to have experienced more growth compared to the southern areas. The north region on average also are observed to have to experienced grotht into brackets between on average $1942 to %4750 on weekly household income. A particular point of interest is the Parramatta region which has had exponential growth between 2011 and 2012. This could be due to recent government initiative such as "The Three City" development, increases in economic activity and infrastructure and more "white" collar jobs and professionals within these regions.</p>
+<p> Within Sydney, there also appears to be strong growth. The north and west seem to have experienced more growth compared to the southern areas. The north region on average also are observed to have to experienced grotht into brackets between on average $1942 to $4750 on weekly household income. A particular point of interest is the Parramatta region which has had exponential growth between 2011 and 2012. This could be due to recent government initiative such as "The Three City" development, increases in economic activity and infrastructure and more "white" collar jobs and professionals within these regions.</p>
 
 <div class="row">
   <div class="column">
@@ -148,6 +147,7 @@
   <div class="column">
   	<h4>2016</h4>
     <img src="https://raw.githubusercontent.com/Timothy03062/MapWeb/master/hdd%20sydney%2016.JPG" alt="Forest" style="width:100%">
+    
   </div>
 </div>
 
@@ -161,12 +161,11 @@ This is significant to the relationship between income and vehicles, as it prove
 <img src="https://raw.githubusercontent.com/Timothy03062/MapWeb/master/Sydney-3-cities-map-e1509599910168.png" alt="Snow" style="width:100%">
 <p>The NSW government has proposed a "Three City" development plan, stretching from Sydney CBD, Parramatta and Badgerys Creek. It can be seen within metropolitan Sydney from visualisation of income and vehicles, that between 2011, 2016 and recent statistics that most growth and developement is happening around these indicated city concentrations and aligns with the proposal. This is most likely because of both government and business future investment and development projections. 
 </p>
-  
 </a> 
-</body>
-</html>    
-<div id='map'></div>
-<div id='map2'></div>
+
+
+<div id='map'>Motor Vehicle Difference (2MV, 2011-16) </div>
+<div id='map2'>Household WeeklyIncome difference(2011-16) </div>
 
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoibWFkZWxlaW5lam9oYW5zb24iLCJhIjoiY2lzczduYzJ4MDZrODJucGh0Mm1xbmVxNCJ9.i7q4iT8FFgh_y5v4we5UhQ';
@@ -176,22 +175,21 @@ var map = new mapboxgl.Map({
     center: [151.004105, -33.813002], // starting position [lng, lat]
     pitch: 45,
     bearing: -17.6,
-    zoom: 5 // starting zoom
+    zoom: 9 // starting zoom
 });
 map.on('load', function() {
-
     map.addLayer({
         "id": "data",
         "type": "fill-extrusion",
         "source": {
-            'type': 'geojson',
-            'data': data
+        	'type': 'geojson',
+        	'data': data
         },
            'paint': {
                 'fill-extrusion-color' : {
-                    'property': 'MV2_2016',
+                   'property': 'MV2_2016',
                     "stops":[
-                        [0, '#B2DEE6'],
+                    	[0, '#B2DEE6'],
                     	[5, '#9DC6CE'],
                         [10, '#88B5BF'],
                         [15,'#62929B'],
@@ -206,14 +204,10 @@ map.on('load', function() {
                 'fill-extrusion-height' : {
                     'property': 'diff_1611',
                     "stops":[
-                         [0, 0], 
-                        [5,500],
+                        [0, 0], 
                     	[10, 1000],
-                        [15, 1500],
                         [20, 2000],
-                        [25, 2500],
                         [30, 3000],
-                        [35, 3500],
                         [40, 4000],
                         [50, 5000],
                         [60, 6000]
@@ -224,28 +218,27 @@ map.on('load', function() {
     });
 });
 
-var maptwo = new mapboxgl.Map({
+var map2 = new mapboxgl.Map({
     container: 'map2', // container id
     style: 'mapbox://styles/mapbox/light-v9', // stylesheet location
     center: [151.004105, -33.813002], // starting position [lng, lat]
     pitch: 45,
     bearing: -17.6,
-    zoom: 5 // starting zoom
+    zoom: 9 // starting zoom
 });
-maptwo.on('load', function() {
-
-    maptwo.addLayer({
-        "id": "data2",
+map2.on('load', function() {
+    map2.addLayer({
+        "id": "data",
         "type": "fill-extrusion",
         "source": {
-            'type': 'geojson',
-            'data': data2
+        	'type': 'geojson',
+        	'data': data
         },
            'paint': {
                 'fill-extrusion-color' : {
-                    'property': 'hdd_2016',
+                   'property': 'hdd_2016',
                     "stops":[
-                        [0, '#B2DEE6'],
+                    		[0, '#B2DEE6'],
                     	[112, '#9DC6CE'],
                         [250, '#88B5BF'],
                         [338,'#62929B'],
@@ -258,14 +251,15 @@ maptwo.on('load', function() {
                     
                 },
                 'fill-extrusion-height' : {
-                    'property': 'dngts_11_',
+                    'property': 'diff_hhd',
                     "stops":[
-                    	[0, 0], 
-                        [500,500],
-                    	[1000, 1000],
-                        [1500, 1500],
-                        [2000, 2000],
-                        [2500, 3000]
+                        [0, 0], 
+                    	[10, 1000],
+                        [20, 2000],
+                        [30, 3000],
+                        [40, 4000],
+                        [50, 5000],
+                        [60, 6000]
                     ]
                 },
                  'fill-extrusion-opacity': 1
@@ -274,5 +268,8 @@ maptwo.on('load', function() {
 });
 </script>
 
+<p>From the first 3D graph which shows the difference of MV's between 2011 and 2016, it can be seen that the significant increase in major cities and zones along the coast with Sydney experiencing the most. Yet there also seems to be increases in major cities further west, showing a cluster. Those living on further west closer to centre and borders have also shown an increase as people would need cars to travel as public transport is inefficient.</p>
+<p>In the second 3D graph shows the change in weekly household income between 2011 and 2016. It can be observed that there are significant increases across the state with large pockets in and surrounding major cities and regions with. More closly the north and north-western regions of Sydney have experienced the most amount of growth.</p>
+<p> Therefore it can be concluded that a growth in household income will also increase the likelihood of households having two cars. 
 </body>
 </html>
